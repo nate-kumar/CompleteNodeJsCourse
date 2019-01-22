@@ -1,4 +1,8 @@
-const MongoClient = require('mongodb').MongoClient;
+// const MongoClient = require('mongodb').MongoClient;
+    const {MongoClient, ObjectID} = require('mongodb');
+
+let obj = new ObjectID();
+console.log(obj)
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
     if (err) {
@@ -17,16 +21,16 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, client) => {
     //     console.log(JSON.stringify(result.ops, undefined, 2));
     // })
 
-    db.collection('Users').insertOne({
-        name: 'Nathan',
-        age: 29,
-        location: 'Philadelphia'
-    }, (err, result) => {
-        if (err) {
-            return console.log('Error creating record')
-        }
-        console.log(JSON.stringify(result.ops, undefined, 2))
-    })
+    // db.collection('Users').insertOne({
+    //     name: 'Nathan',
+    //     age: 29,
+    //     location: 'Philadelphia'
+    // }, (err, result) => {
+    //     if (err) {
+    //         return console.log('Error creating record')
+    //     }
+    //     console.log(JSON.stringify(result.ops, undefined, 2))
+    // })
 
     client.close();
 });
