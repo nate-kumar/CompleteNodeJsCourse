@@ -5,7 +5,7 @@ let {mongoose} = require('./db/mongoose');
 let {Todo} = require('./models/todo');
 let {User} = require('./models/user');
 
-var app = express();
+let app = express();
 
 app.use(bodyParser.json())
 
@@ -22,8 +22,18 @@ app.post('/todos', (req, res) => {
     })
 });
 
-app.listen(3001, () => {
-    console.log('Started on port 3001')
+app.get('/todos', (req, res) => {
+    Todo.find().then((todos) => {
+        res.send({todos})
+    }, (err) => {
+        res.status(400).send(err);
+    })
+})
+
+
+let port = 3000;
+app.listen(port, () => {
+    console.log(`Started on port ${port}`)
 })
 
 module.exports = {app};
